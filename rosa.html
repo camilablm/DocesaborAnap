@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doce Sabor</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+<head>
+  <style>
+  
+  .header {
+  background-color: #FFDC5E; /* Cor de fundo amarela */
+  height: 40px; /* Altura da borda horizontal */
+  width: 100%; /* Largura total */
+  position: fixed; 
+  top: 0; /* Coloca a borda no topo da página */
+  z-index: 1; /* Garante que a borda fique acima de outros elementos */
+  display: inline; /* Para centralizar o texto verticalmente */
+  align-items: center; 
+  text-align: center;/* Para centralizar o texto verticalmente */
+  }
+  .header p {
+  margin: 0; /* Remove margens padrão do parágrafo */
+  padding: 10px; /* Espaçamento interno para o texto */
+  font-size: 18px; /* Tamanho da fonte do texto */
+  color: #FF69EB; /* Cor do texto */
+  }
+
+  .logo
+  {
+    width: 500px;
+    height: 100%;
+    text-align: center;
+  }
+
+  body {
+    background-color: #FFB0B2;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+
+  .produtos1{
+    width: 25%;
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .produtos2{
+    width: 25%;
+    text-align: center;
+    margin-top: 60px;
+  }
+
+
+
+</style>
+</head>
+<body>
+  <div class="header">
+    <p>Doce Sabor | Cardápio</p>
+  </div>
+
+  <div class="produtos1">
+    <h3>Sanduiche</h3>
+    <img src="sanduiche.jpeg" height="170" alt="Imagem Sand">
+    <h3 id="valorsand">7.00</h3>
+    <button class="button" onclick="botaoSand()">Adicionar ao Carrinho</button>
+    <br><br>
+    <h3>Palha Italiana</h3>    
+    <img src="paalha.jpeg" height="170" alt="Imagem Palha">
+    <h3 id="valorpalha">5.00</h3>
+    <button class="button" onclick="botaoPalha()">Adicionar ao Carrinho</button>
+    <br><br>
+    <h3>Brownie</h3>
+    <img src="brownie.jpeg" height="170" alt="Imagem Brown">
+    <h3 id="valorbrown">8.00</h3>
+    <button class="button" onclick="botaoBrown()">Adicionar ao Carrinho</button>
+  </div>
+  <div class="produtos2">
+    <h3>Cupcake</h3>
+    <img src="cupcakke.jpeg" height="170" alt="Imagem Cupcake">
+    <h3 id="valorcup">5.00</h3>
+    <button class="button" onclick="botaoCup()">Adicionar ao Carrinho</button>
+    <br><br>
+    <h3>Beijinho</h3>
+    <img src="beijinho.jpeg" height="170" alt="Imagem Bjo">
+    <h3 id="valorbjo">2.00</h3>
+    <button class="button" onclick="botaoBjo()">Adicionar ao Carrinho</button>
+    <br><br>
+    <h3>Brigadeiro</h3>
+    <img src="brigadeiro.jpeg" height="170" alt="Imagem Bri">
+    <h3 id="valorbri">2.00</h3>
+    <button class="button" onclick="botaoBri()">Adicionar ao Carrinho</button>
+  </div>
+  <div class="logo">
+    <img src="logo.png" height="400" alt="Imagem QR">
+    <p>Em parceria com Jomila Programas.</p>
+    <h4>Total a pagar:</h4>
+    <p id="exibirVariavel"></p>
+    <p id="exibirVariavel2"></p>
+    <img src="qrcode.jpeg" height="200" alt="Imagem QR">
+    <br><br>
+    <h5> Não se esqueça de comentar no PIX qual é seu pedido, e observações caso necessário! 🎔</h5>  
+  </div>
+
+  <script>
+
+    var preco = 0 
+    var itens = "Seu Pedido: \n"
+
+    function botaoPalha() {
+      alert("seu item foi adicionado ao carrinho!");
+      preco = preco + 5
+      if (itens.includes("Palha Italiana")) {
+        const numeroAtual = itens.match(/Palha Italiana x(\d+)/);
+        if (numeroAtual) {
+          const novoNumero = parseInt(numeroAtual[1]) + 1;
+          itens = itens.replace(/Palha Italiana x\d+/, `Palha Italiana x${novoNumero} \n`);
+        } 
+          else {
+           itens += " x1 \n";
+          }
+      }
+      else {
+        itens += "Palha Italiana x1 \n"
+      }
+      atualizarTexto();
+    }
+    function botaoSand() {
+      alert("seu item foi adicionado ao carrinho!");
+      preco = preco + 7
+      if (itens.includes("Sanduíche")) {
+        const numeroAtual = itens.match(/Sanduíche x(\d+)/);
+        if (numeroAtual) {
+          const novoNumero = parseInt(numeroAtual[1]) + 1;
+          itens = itens.replace(/Sanduíche x\d+/, `Sanduíche x${novoNumero} \n`);
+        } 
+          else {
+           itens += " x1 \n";
+          }
+      }
+      else {
+        itens += "Sanduíche x1 \n"
+      }
+      atualizarTexto();
+    }
+    function botaoBrown() {
+      alert("seu item foi adicionado ao carrinho!");
+      preco = preco + 8
+      if (itens.includes("Brownie")) {
+        const numeroAtual = itens.match(/Brownie x(\d+)/);
+        if (numeroAtual) {
+          const novoNumero = parseInt(numeroAtual[1]) + 1;
+          itens = itens.replace(/Brownie x\d+/, `Brownie x${novoNumero} \n`);
+        } 
+          else {
+           itens += " x1 \n";
+          }
+      }
+      else {
+        itens += "Brownie x1 \n"
+      }
+      atualizarTexto();
+    }
+    function botaoCup() {
+      alert("seu item foi adicionado ao carrinho!");
+      preco = preco + 5
+      if (itens.includes("Cupcake")) {
+        const numeroAtual = itens.match(/Cupcake x(\d+)/);
+        if (numeroAtual) {
+          const novoNumero = parseInt(numeroAtual[1]) + 1;
+          itens = itens.replace(/Cupcake x\d+/, `Cupcake x${novoNumero} \n`);
+        } 
+          else {
+           itens += " x1 \n";
+          }
+      }
+      else {
+        itens += "Cupcake x1 \n"
+      }
+      atualizarTexto();
+    }
+    function botaoBjo() {
+      alert("seu item foi adicionado ao carrinho!");
+      preco = preco + 2
+      if (itens.includes("Beijinho")) {
+        const numeroAtual = itens.match(/Beijinho x(\d+)/);
+        if (numeroAtual) {
+          const novoNumero = parseInt(numeroAtual[1]) + 1;
+          itens = itens.replace(/Beijinho x\d+/, `Beijinho x${novoNumero} \n`);
+        } 
+          else {
+           itens += " x1 \n";
+          }
+      }
+      else {
+        itens += "Beijinho x1 \n"
+      }
+      atualizarTexto();
+    }
+    function botaoBri() {
+      alert("seu item foi adicionado ao carrinho!");
+      preco = preco + 2
+      if (itens.includes("Brigadeiro")) {
+        const numeroAtual = itens.match(/Brigadeiro x(\d+)/);
+        if (numeroAtual) {
+          const novoNumero = parseInt(numeroAtual[1]) + 1;
+          itens = itens.replace(/Brigadeiro x\d+/, `Brigadeiro x${novoNumero} \n`);
+        } 
+          else {
+           itens += " x1 \n";
+          }
+      }
+      else {
+        itens += "Brigadeiro x1 \n"
+      }
+      atualizarTexto();
+    }
+
+    function atualizarTexto() {
+            document.getElementById("exibirVariavel").textContent = preco;
+            document.getElementById("exibirVariavel2").textContent = itens;
+        }
+    
+    atualizarTexto();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>
